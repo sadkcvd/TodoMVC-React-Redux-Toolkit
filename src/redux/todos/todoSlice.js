@@ -6,13 +6,16 @@ export const todoSlice = createSlice({
         items: [
             {
                 id: 1,
-                title: "Learn React",
+                title: "Learn Javascript",
                 completed: true
+            },
+            {
+                id: 2,
+                title: "Learn React",
+                completed: false
             },
         ],
         activeFilter: "all",
-        isLoading: false,
-        isError: false
     },
     reducers: {
         addTodo: (state, action) => {
@@ -37,6 +40,19 @@ export const todoSlice = createSlice({
         }
     }
 });
+
+export const selectTodos = (state) => state.todos.items;
+export const selectActiveFilter = (state) => state.todos.activeFilter;
+export const selectFilteredTodos = (state) => {
+    if (state.todos.activeFilter === "all") {
+        return state.todos.items;
+    }
+    return state.todos.items.filter(todo =>
+        state.todos.activeFilter === "active"
+            ? todo.completed === false
+            : todo.completed === true
+    );
+}
 
 
 export const { addTodo, toggle, destroy, changeActiveFilter, clearCompleted } = todoSlice.actions;

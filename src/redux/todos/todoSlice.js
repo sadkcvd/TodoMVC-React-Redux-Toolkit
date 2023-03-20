@@ -10,6 +10,7 @@ export const todoSlice = createSlice({
                 completed: true
             },
         ],
+        activeFilter: "all",
         isLoading: false,
         isError: false
     },
@@ -26,10 +27,17 @@ export const todoSlice = createSlice({
             const id = action.payload
             const filtered = state.items.filter(item => item.id !== id)
             state.items = filtered
+        },
+        changeActiveFilter: (state, action) => {
+            state.activeFilter = action.payload
+        },
+        clearCompleted: (state, action) => {
+            const filtered = state.items.filter(item => item.completed === false)
+            state.items = filtered
         }
     }
 });
 
 
-export const { addTodo, toggle, destroy } = todoSlice.actions;
+export const { addTodo, toggle, destroy, changeActiveFilter, clearCompleted } = todoSlice.actions;
 export default todoSlice.reducer;

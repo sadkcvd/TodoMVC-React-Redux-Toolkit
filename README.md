@@ -1,3 +1,4 @@
 TodoMVC - React- Redux Toolkit
 
-https://sadkcvdtodomvcproject.netlify.app/#/
+For Live View:
+https://sadkcvd-todomvc.netlify.app/
